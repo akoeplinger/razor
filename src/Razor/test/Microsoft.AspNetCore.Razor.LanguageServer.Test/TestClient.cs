@@ -59,8 +59,7 @@ internal class TestClient : ClientNotifierServiceBase
 
     public override Task<TResponse> SendRequestAsync<TParams, TResponse>(string methodName, TParams @params, CancellationToken cancellationToken)
     {
-        _requests.Add(new RequestPair(methodName, @params));
-        return Task.FromResult<TResponse>(default!);
+        throw new NotImplementedException();
     }
 
     public override Task OnInitializedAsync(VSInternalClientCapabilities clientCapabilities, CancellationToken cancellationToken)

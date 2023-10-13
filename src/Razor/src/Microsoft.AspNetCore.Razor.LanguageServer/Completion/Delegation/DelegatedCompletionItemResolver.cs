@@ -48,16 +48,7 @@ internal class DelegatedCompletionItemResolver : CompletionItemResolver
             return null;
         }
 
-        // If the data was merged to combine resultId with original data, undo that merge and set the data back
-        // to what it originally was for the delegated request
-        if (CompletionListMerger.TrySplit(associatedDelegatedCompletion.Data, out var splitData) && splitData.Count == 2)
-        {
-            item.Data = splitData[1];
-        }
-        else
-        {
-            item.Data = associatedDelegatedCompletion.Data ?? resolutionContext.OriginalCompletionListData;
-        }        
+        item.Data = associatedDelegatedCompletion.Data ?? resolutionContext.OriginalCompletionListData;
 
         var delegatedParams = resolutionContext.OriginalRequestParams;
         var delegatedResolveParams = new DelegatedCompletionItemResolveParams(
